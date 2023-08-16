@@ -9,7 +9,8 @@ import PAYE
 
 #oh god don't make me talk about CORS. it triggers bad memories.
 #basically it helps to reduce security issues while our web requests are flying around.
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
 CORS(app)
@@ -29,6 +30,7 @@ def hello_world():
 
 
 @app.route('/getNetIncome/', methods=['POST'])
+@cross_origin()
 #this method will be triggered by the above URL end point. take its input and send it to the totalTax() function in PAYE.py
 def netIncome():
     gross_income = request.get_json()
